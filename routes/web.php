@@ -18,7 +18,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('admin')->group(function () {
-    Route::get('/profile', [AdminController::class, 'edit'])->name('profile.edit');
+    Route::get('/addcategory', [AdminController::class, 'addCategory'])->name('admin.addcategory');
+    Route::post('/addcategory', [AdminController::class, 'postAddCategory'])->name('admin.postaddcategory');
 });
 
 
