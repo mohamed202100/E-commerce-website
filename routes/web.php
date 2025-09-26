@@ -18,8 +18,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('admin')->group(function () {
-    Route::get('/addcategory', [AdminController::class, 'addCategory'])->name('admin.addcategory');
-    Route::post('/addcategory', [AdminController::class, 'postAddCategory'])->name('admin.postaddcategory');
+    Route::get('/categories/create', [AdminController::class, 'create'])->name('categories.create');
+    Route::post('/categories', [AdminController::class, 'store'])->name('categories.store');
+    Route::get('/categories', [AdminController::class, 'index'])->name('categories.index');
 });
 
 

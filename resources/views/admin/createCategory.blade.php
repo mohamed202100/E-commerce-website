@@ -1,4 +1,5 @@
 @extends('admin.mainDesign')
+
 @section('add-category')
     @if (session('category_message'))
         <div
@@ -8,7 +9,7 @@
         </div>
     @endif
     <div class="container-fluid">
-        <form action="{{ route('admin.postaddcategory') }}" method="post">
+        <form action="{{ route('categories.store') }}" method="post">
             @csrf
             <input type="text" name="category">
             <input type="submit" value="Add Category" name="submit">

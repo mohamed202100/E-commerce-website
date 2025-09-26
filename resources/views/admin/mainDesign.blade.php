@@ -91,7 +91,8 @@
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
                             class="icon-windows"></i>Category </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="{{ route('admin.addcategory') }}">Add Category</a></li>
+                        <li><a href="{{ route('categories.create') }}">Add Category</a></li>
+                        <li><a href="{{ route('categories.index') }}">View Category</a></li>
                     </ul>
                 </li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
@@ -113,7 +114,10 @@
             </div>
             <section class="no-padding-top no-padding-bottom">
                 @yield('dashboard')
+
                 @yield('add-category')
+
+                @yield('view-category')
 
             </section>
             <footer class="footer">
