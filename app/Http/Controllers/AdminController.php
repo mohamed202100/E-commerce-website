@@ -24,6 +24,19 @@ class AdminController extends Controller
             "categories" => Category::all(),
         ]);
     }
+    public function edit($id)
+    {
+        return view('admin.edit', [
+            'category' => Category::findOrFail($id)
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->category = $request->category;
+        $category->save();
+        return redirect()->route('categories.index')->with('update', 'Category Updated Successfully');
+    }
 
     public function destroy($id)
     {

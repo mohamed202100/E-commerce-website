@@ -117,7 +117,11 @@
 
                 @yield('add-category')
 
+                @yield('edit-category')
+
                 @yield('view-category')
+
+
 
             </section>
             <footer class="footer">

@@ -22,6 +22,8 @@ Route::middleware('admin')->group(function () {
     Route::post('/categories', [AdminController::class, 'store'])->name('categories.store');
     Route::get('/categories', [AdminController::class, 'index'])->name('categories.index');
     Route::delete('/categories/{id}', [AdminController::class, 'destroy'])->name('categories.delete');
+    Route::get('/categories/{id}', [AdminController::class, 'edit'])->name('categories.edit');
+    Route::put('/categories/{id}', [AdminController::class, 'update'])->name('categories.update');
 });
 
 
