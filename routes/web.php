@@ -21,6 +21,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/categories/create', [AdminController::class, 'create'])->name('categories.create');
     Route::post('/categories', [AdminController::class, 'store'])->name('categories.store');
     Route::get('/categories', [AdminController::class, 'index'])->name('categories.index');
+    Route::delete('/categories/{id}', [AdminController::class, 'destroy'])->name('categories.delete');
 });
 
 

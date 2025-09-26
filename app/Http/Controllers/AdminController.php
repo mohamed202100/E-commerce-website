@@ -24,4 +24,10 @@ class AdminController extends Controller
             "categories" => Category::all(),
         ]);
     }
+
+    public function destroy($id)
+    {
+        Category::findOrFail($id)->delete();
+        return redirect()->back()->with('delete', 'Category Deleted Successfully');
+    }
 }
