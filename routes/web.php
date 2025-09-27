@@ -33,6 +33,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/showproducts', [AdminController::class, 'indexProducts'])->name('products.index');
     Route::get('/products/create', [AdminController::class, 'createProduct'])->name('products.create');
     Route::post('/storeproducts', [AdminController::class, 'storeProduct'])->name('products.store');
+    Route::delete('/inproducts/{id}', [AdminController::class, 'destroyProducts'])->name('products.delete');
+    Route::get('/inproducts/{id}', [AdminController::class, 'editProducts'])->name('products.edit');
 });
 
 require __DIR__ . '/auth.php';

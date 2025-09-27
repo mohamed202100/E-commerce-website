@@ -90,4 +90,10 @@ class AdminController extends Controller
         $product->save();
         return redirect()->route('products.index')->with('success', 'Product Added Successfully!');
     }
+
+    public function destroyProducts($id)
+    {
+        Product::findOrFail($id)->delete();
+        return redirect()->back()->with('delete', 'Product Deleted Successfully');
+    }
 }
