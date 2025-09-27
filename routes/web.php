@@ -7,9 +7,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'home'])->name('index');
 
+Route::get('/product_details/{id}', [UserController::class, 'productDetails'])->name('product_Details');
+
+
 Route::get('/dashboard', [UserController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

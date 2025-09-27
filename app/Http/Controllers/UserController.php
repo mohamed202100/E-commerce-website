@@ -23,4 +23,10 @@ class UserController extends Controller
             return view('dashboard');
         }
     }
+
+    public function productDetails($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('productDetails', compact('product'));
+    }
 }
