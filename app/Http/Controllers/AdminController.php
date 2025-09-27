@@ -93,7 +93,13 @@ class AdminController extends Controller
 
     public function destroyProducts($id)
     {
-        Product::findOrFail($id)->delete();
+        $product = Product::findOrFail($id);
+        $image_path = public_path('products/' . $product->product_image);
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }
+        $product->delete();
+
         return redirect()->back()->with('delete', 'Product Deleted Successfully');
     }
 }
