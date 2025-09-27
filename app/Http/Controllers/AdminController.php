@@ -40,7 +40,7 @@ class AdminController extends Controller
         $category = Category::findOrFail($id);
         $category->category = $request->category;
         $category->save();
-        return redirect()->route('categories.index')->with('update', 'Category Updated Successfully');
+        return redirect()->route('categories.index')->with('update', 'Updated Successfully');
     }
 
     public function destroy($id)
@@ -101,5 +101,31 @@ class AdminController extends Controller
         $product->delete();
 
         return redirect()->back()->with('delete', 'Product Deleted Successfully');
+    }
+
+    public function editProducts($id)
+    {
+        return view('admin.editProduct', [
+            'product' => Product::findOrFail($id),
+            'categories' => Category::all()
+        ]);
+    }
+    public function updateProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $product->product_title       = $request->product_title;
+        $product->product_category    = $request->product_category;
+        $product->product_description = $request->product_description;
+        $product->product_quantity    = $request->product_quantity;
+        $product->product_price       = $request->product_price;
+
+        if ($request->hasFile('product_image')) {
+            $image     = $request->file('product_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('products'), $imageName);
+            $product->product_image = $imageName;
+        }
+        $product->save();
+        return redirect()->route('products.index')->with('update', 'Updated Successfully');
     }
 }
