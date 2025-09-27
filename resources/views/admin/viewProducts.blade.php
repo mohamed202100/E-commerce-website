@@ -14,6 +14,7 @@
             <tr style="background:#eee;">
                 <th>ID</th>
                 <th>Title</th>
+                <th>Description</th>
                 <th>Category</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->product_title }}</td>
+                    <td>{{ Str::limit($product->product_description, 50) }}</td>
                     <td>{{ $product->product_category }}</td>
                     <td>{{ $product->product_price }}</td>
                     <td>{{ $product->product_quantity }}</td>
@@ -35,6 +37,7 @@
                     </td>
                 </tr>
             @endforeach
+            {{ $products->links() }}
         </tbody>
     </table>
 @endsection
