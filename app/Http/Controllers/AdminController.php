@@ -128,4 +128,11 @@ class AdminController extends Controller
         $product->save();
         return redirect()->route('products.index')->with('update', 'Updated Successfully');
     }
+
+    public function findProduct(Request $request)
+    {
+        $products = Product::where('product_title', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('product_description', 'LIKE', '%' . $request->search . '%')->paginate(2);
+        return view('admin.viewProducts', compact('products'));
+    }
 }

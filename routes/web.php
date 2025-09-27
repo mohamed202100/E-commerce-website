@@ -34,5 +34,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/inproducts/{id}', [AdminController::class, 'editProducts'])->name('products.edit');
     Route::put('/products/{id}', [AdminController::class, 'updateProduct'])->name('products.update');
     Route::delete('/inproducts/{id}', [AdminController::class, 'destroyProducts'])->name('products.delete');
+    Route::post('/search', [AdminController::class, 'findProduct'])->name('admin.searchproduct');
 });
+
 require __DIR__ . '/auth.php';
