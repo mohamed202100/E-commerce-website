@@ -10,6 +10,11 @@ class UserController extends Controller
 {
     public function home()
     {
+        $products = Product::latest()->take(2)->get();
+        return view('index', compact('products'));
+    }
+    public function allProducts()
+    {
         $products = Product::all();
         return view('index', compact('products'));
     }

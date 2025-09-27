@@ -11,7 +11,7 @@
                 <div class="col-md-6">
                     <div class="img-box">
                         <img src="{{ asset('products/' . $product->product_image) }}" alt="{{ $product->product_title }}"
-                            style="width:100%; max-height:400px; object-fit:cover;">
+                            style="max-width:100%; max-height:400px; object-fit:cover;">
                     </div>
                 </div>
                 <div class="col-md-6">
