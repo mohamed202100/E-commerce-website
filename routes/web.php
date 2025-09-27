@@ -11,6 +11,8 @@ Route::get('/product_details/{id}', [UserController::class, 'productDetails'])->
 
 Route::get('/allproducts', [UserController::class, 'allProducts'])->name('viewallproducts');
 
+Route::get('/addtocart/{id}', [UserController::class, 'addToCart'])->name('addtocart')->middleware('auth');
+
 
 Route::get('/dashboard', [UserController::class, 'index'])
     ->middleware(['auth', 'verified'])
