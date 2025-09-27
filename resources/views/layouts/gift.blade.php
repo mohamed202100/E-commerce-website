@@ -70,7 +70,8 @@
                                 <i class="fa fa-user" aria-hidden="true"></i> <span>Sign Up</span>
                             </a>
                         @endif
-                        <a href=""><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                        <a href="{{ route('cartproducts') }}"><i class="fa fa-shopping-bag"
+                                aria-hidden="true">{{ $count }}</i></a>
                     </div>
                 </div>
             </nav>

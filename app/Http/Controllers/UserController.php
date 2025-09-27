@@ -11,14 +11,22 @@ class UserController extends Controller
 {
     public function home()
     {
+        if (Auth::check()) {
+            $count = ProductCart::where('user_id', Auth::id())->count();
+        } else $count = "";
+
         $products = Product::latest()->take(2)->get();
-        return view('index', compact('products'));
+        return view('index', compact('products', 'count'));
     }
 
     public function allProducts()
     {
+        if (Auth::check()) {
+            $count = ProductCart::where('user_id', Auth::id())->count();
+        } else $count = "";
+
         $products = Product::all();
-        return view('index', compact('products'));
+        return view('index', compact('products', 'count'));
     }
 
     public function index()
@@ -32,8 +40,12 @@ class UserController extends Controller
 
     public function productDetails($id)
     {
+        if (Auth::check()) {
+            $count = ProductCart::where('user_id', Auth::id())->count();
+        } else $count = "";
+
         $product = Product::findOrFail($id);
-        return view('productDetails', compact('product'));
+        return view('productDetails', compact('product', 'count'));
     }
 
     public function addToCart($id)
@@ -45,5 +57,15 @@ class UserController extends Controller
         $product_cart->save();
 
         return redirect()->back()->with('success', 'Product Added To Cart');
+    }
+
+    public function cartProducts()
+    {
+        if (Auth::check()) {
+            $count = ProductCart::where('user_id', Auth::id())->count();
+            $cart = ProductCart::where('user_id', Auth::id())->get();
+        } else $count = "";
+
+        return view('viewCartProducts', compact('count', 'cart'));
     }
 }
