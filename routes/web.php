@@ -11,11 +11,18 @@ Route::get('/product_details/{id}', [UserController::class, 'productDetails'])->
 
 Route::get('/allproducts', [UserController::class, 'allProducts'])->name('viewallproducts');
 
-Route::get('/addtocart/{id}', [UserController::class, 'addToCart'])->name('addtocart')->middleware('auth', 'verified');
+Route::get('/addtocart/{id}', [UserController::class, 'addToCart'])->name('addtocart')
+    ->middleware('auth', 'verified');
+
+Route::delete('/removeproductcart/{id}', [UserController::class, 'removeFromCart'])->name('productscart.delete')
+    ->middleware('auth', 'verified');
 
 Route::get('/cartproducts', [UserController::class, 'cartProducts'])
     ->middleware(['auth', 'verified'])
     ->name('cartproducts');
+
+
+
 
 
 Route::get('/dashboard', [UserController::class, 'index'])
