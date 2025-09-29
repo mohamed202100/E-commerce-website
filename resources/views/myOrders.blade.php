@@ -37,7 +37,6 @@
                                         src="{{ asset('products/' . $order->product->product_image) }}" alt="">
                                 </td>
                                 <td style="padding: 12px;">{{ $order->status }}</td>
-
                             </tr>
                         @endforeach
                 </table>

@@ -100,6 +100,9 @@ Route::middleware('admin')->group(function () {
 
     Route::put('/ordersstatus/{id}', [AdminController::class, 'changeStatus'])
         ->name('order.changestatus');
+
+    Route::get('/downloadpdf/{id}', [AdminController::class, 'downloadPDF'])
+        ->name('downloadpdf');
 });
 
 require __DIR__ . '/auth.php';

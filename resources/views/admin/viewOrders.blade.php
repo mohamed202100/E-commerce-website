@@ -1,9 +1,6 @@
 @extends('admin.mainDesign')
 
 @section('view-orders')
-    @extends('admin.mainDesign')
-
-@section('view-category')
     @if (session('update'))
         <div
             style="border: 1px solid rgb(43, 43, 162); color: white; border-radius: 4px rounded; padding: 10px;
@@ -21,6 +18,7 @@
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Price</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Image</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Action</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">PDF</th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +31,7 @@
                     <td style="padding: 12px;">{{ $order->product->product_price }}</td>
                     <td style="padding: 12px;"><img style="width:100px;height:100px;max-width:100%"
                             src="{{ asset('products/' . $order->product->product_image) }}" alt=""></td>
-                    <td>
+                    <td style="padding: 12px;">
                         <form action="{{ route('order.changestatus', $order->id) }}" method="post">
                             @method('put')
                             @csrf
@@ -50,9 +48,10 @@
                             <input type="submit" value="Submit" name="submit" onclick="return confirm('Are You Sure?')">
                         </form>
                     </td>
+                    <td style="padding: 12px;">
+                        <a href="{{ route('downloadpdf', $order->id) }}" class="btn btn-primary">Download PDF</a>
+                    </td>
                 </tr>
             @endforeach
     </table>
-@endsection
-
 @endsection
