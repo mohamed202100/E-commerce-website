@@ -93,4 +93,10 @@ class UserController extends Controller
         }
         return redirect()->back()->with('confirm', 'Order Confirmed');
     }
+
+    public function myOrders()
+    {
+        $orders = Order::where('user_id', '=', Auth::id())->get();
+        return view('myOrders', compact('orders'));
+    }
 }
