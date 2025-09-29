@@ -8,20 +8,26 @@
             {{ session('delete') }}
         </div>
     @endif
+    <br>
+    <a href="{{ route('index') }}" class="btn btn-secondary">Back to Shop</a>
+    <br><br>
     <table style="width: 100%; border-collapse: collapse; font-family: arial, sans-serif;">
         <thead>
             <tr style="background-color: #f2f2f2">
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Product Title</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Product Price</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Product Image</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd" colspan="2">Action</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Action</th>
             </tr>
         </thead>
         <tbody>
+            @php
+                $total_price = 0;
+            @endphp
             @foreach ($cart as $cart)
                 <tr style="border-bottom: 1px solid #ddd">
                     <td style="padding: 12px;">{{ $cart->product->product_title }}</td>
-                    <td style="padding: 12px;">{{ $cart->product->product_price }}</td>
+                    <td style="padding: 12px;">${{ $cart->product->product_price }}</td>
                     <td>
                         <img src="{{ asset('products/' . $cart->product->product_image) }}" width="80">
                     </td>
@@ -33,11 +39,21 @@
                                 onclick="return confirm('Are You Sure?')">
                         </form>
                     </td>
-                    <td>
-                        <a href="{{ route('products.edit', $cart->id) }}" style="color: green">Edit</a>
-                    </td>
                 </tr>
+
+                @php
+                    $total_price += $cart->product->product_price;
+                @endphp
             @endforeach
+        <tfoot>
+            <tr style="background-color: #f2f2f2">
+                <td style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd ;display: flex; justify-content:space-between;"
+                    colspan="5">
+                    <h4>Total Price: </h4>
+                    <h4>${{ $total_price }}</h4>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 
 

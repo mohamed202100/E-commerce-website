@@ -3,8 +3,9 @@
 @section('title', 'Product - Details')
 
 @section('content')
+    <br>
     <a href="{{ route('index') }}" class="btn btn-secondary">Back to Shop</a>
-
+    <br>
     @if (session('success'))
         <div
             style="border: 1px solid rgb(43, 43, 162); color: white; border-radius: 4px rounded; padding: 10px;

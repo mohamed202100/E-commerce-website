@@ -65,7 +65,6 @@ class UserController extends Controller
             $count = ProductCart::where('user_id', Auth::id())->count();
             $cart = ProductCart::where('user_id', Auth::id())->get();
         } else $count = "";
-
         return view('viewCartProducts', compact('count', 'cart'));
     }
 
