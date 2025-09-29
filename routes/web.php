@@ -61,6 +61,7 @@ Route::middleware('admin')->group(function () {
     Route::post('/search', [AdminController::class, 'findProduct'])->name('admin.searchproduct');
 
     Route::get('/orders', [AdminController::class, 'viewOrders'])->name('orders');
+    Route::put('/ordersstatus/{id}', [AdminController::class, 'changeStatus'])->name('order.changestatus');
 });
 
 require __DIR__ . '/auth.php';

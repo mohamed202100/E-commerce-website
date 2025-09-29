@@ -20,7 +20,7 @@
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Product</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Price</th>
                 <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Image</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd" colspan="2">Actions</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -34,13 +34,21 @@
                     <td style="padding: 12px;"><img style="width:100px;height:100px;max-width:100%"
                             src="{{ asset('products/' . $order->product->product_image) }}" alt=""></td>
                     <td>
-                        <form action="{{ route('products.delete', $order->id) }}" method="post">
-                            @method('delete')
+                        <form action="{{ route('order.changestatus', $order->id) }}" method="post">
+                            @method('put')
                             @csrf
-                            <input type="submit" value="Delete" name="delete" class="btn btn-danger"
-                                onclick="return confirm('Are You Sure?')">
+                            <select name="status">
+                                @if ($order->status == 'pending')
+                                    <option selected value="pending">Pending</option>
+                                    <option value="delivered">Delivered</option>
+                                @else{
+                                    <option selected value="delivered">Delivered</option>
+                                    <option value="pending">Pending</option>
+                                    }
+                                @endif
+                            </select>
+                            <input type="submit" value="Submit" name="submit" onclick="return confirm('Are You Sure?')">
                         </form>
-                        <a href="{{ route('products.edit', $order->id) }}" style="color: green">Edit</a>
                     </td>
                 </tr>
             @endforeach
