@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductCart;
 use Illuminate\Http\Request;
@@ -73,5 +74,23 @@ class UserController extends Controller
         $cart = ProductCart::findOrFail($id);
         $cart->delete();
         return redirect()->back()->with('delete', 'Removed Successfully');
+    }
+
+    public function confirmOrder(Request $request)
+    {
+        $cart = ProductCart::where('user_id', Auth::id())->get();
+        $address = $request->address;
+        $phone = $request->phone;
+        foreach ($cart as $cart_product) {
+            $order = new Order();
+            $order->address = $address;
+            $order->phone = $phone;
+            $order->user_id = Auth::id();
+            $order->product_id = $cart_product->product_id;
+            $order->save();
+            $cart_product->delete();
+            $cart_product->save();
+        }
+        return redirect()->back()->with('confirm', 'Order Confirmed');
     }
 }

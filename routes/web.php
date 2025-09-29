@@ -17,6 +17,10 @@ Route::get('/addtocart/{id}', [UserController::class, 'addToCart'])->name('addto
 Route::delete('/removeproductcart/{id}', [UserController::class, 'removeFromCart'])->name('productscart.delete')
     ->middleware('auth', 'verified');
 
+Route::post('/removeproductcart', [UserController::class, 'confirmOrder'])->name('confirmorder')
+    ->middleware('auth', 'verified');
+
+
 Route::get('/cartproducts', [UserController::class, 'cartProducts'])
     ->middleware(['auth', 'verified'])
     ->name('cartproducts');
