@@ -18,9 +18,6 @@
             {{ session('confirm') }}
         </div>
     @endif
-    <br>
-    <a href="{{ route('index') }}" class="btn btn-secondary">Back to Shop</a>
-    <br><br>
 
     <div style="width: 1600px; margin:0 auto; padding:20px">
         <table style="width: 100%; border-collapse: collapse; font-family: arial, sans-serif;">
@@ -73,6 +70,9 @@
             <input type="text" name="address" id="address" placeholder="enter your address" required><br><br>
             <input type="text" name="phone" id="phone" placeholder="enter your phone" required><br><br>
             <input type="submit" value="Confirm Order" name="submit" class="btn btn-primary"><br><br>
+            <a href="{{ route('stripe', $total_price) }}"
+                style="background-color: #a1cde3; padding: 12px; border-radius: 12px;">
+                Pay Now</a>
         </form>
     </div>
 

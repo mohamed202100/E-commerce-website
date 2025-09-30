@@ -25,6 +25,14 @@ Route::post('/removeproductcart', [UserController::class, 'confirmOrder'])
     ->name('confirmorder')
     ->middleware('auth', 'verified');
 
+Route::controller(UserController::class)->middleware('auth', 'verified')
+    ->group(function () {
+        Route::get('stripe/{price}', 'stripe')->name('stripe');
+        Route::post('stripe', 'stripePost')->name('stripe.post');
+    });
+
+
+
 
 Route::get('/cartproducts', [UserController::class, 'cartProducts'])
     ->middleware(['auth', 'verified'])

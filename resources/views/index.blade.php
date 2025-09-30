@@ -60,8 +60,15 @@
                                     <h6>{{ $product->product_title }}</h6>
                                     <h6>Price <span>${{ $product->product_price }}</span></h6>
                                 </div>
-                                <div class="new"><span>New</span></div>
+                                <div class="new"><span>New</span></div><br>
                             </a>
+                            <a href="{{ route('addtocart', $product->id) }}"
+                                style="background-color: #2c42ea; padding: 12px; border-radius: 12px; margin-right:25px;">
+                                Add to Cart</a>
+
+                            <a href="{{ route('stripe', $product->product_price) }}"
+                                style="background-color: #a1cde3; padding: 12px; border-radius: 12px;">
+                                Pay Now</a>
                         </div>
                     </div>
                 @endforeach

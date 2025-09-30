@@ -3,9 +3,6 @@
 @section('title', 'Product - Details')
 
 @section('content')
-    <br>
-    <a href="{{ route('index') }}" class="btn btn-secondary">Back to Shop</a>
-    <br>
     @if (session('success'))
         <div
             style="border: 1px solid rgb(43, 43, 162); color: white; border-radius: 4px rounded; padding: 10px;
@@ -32,6 +29,10 @@
                         <p><strong>Available Quantity:</strong> {{ $product->product_quantity }}</p>
 
                         <a href="{{ route('addtocart', $product->id) }}" class="btn btn-primary">Add to Cart</a>
+                        <br><br>
+                        <a href="{{ route('stripe', $product->product_price) }}"
+                            style="background-color: #a1cde3; padding: 12px; border-radius: 12px;">
+                            Pay Now</a>
                     </div>
                 </div>
             </div>
