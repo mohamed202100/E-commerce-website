@@ -45,7 +45,7 @@ class ProductController extends Controller
 
     public function show(string $id)
     {
-        //
+        return response()->json(Product::findOrFail($id));
     }
 
     public function edit($id)
