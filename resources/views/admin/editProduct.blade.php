@@ -26,8 +26,15 @@
             </select>
             <br><br>
             <input type="submit" value="Update Product" name="submit">
-
-
         </form>
     </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +13,7 @@ Route::get('/product_details/{id}', [UserController::class, 'productDetails'])
     ->name('product_Details');
 
 Route::get('/allproducts', [UserController::class, 'allProducts'])
-    ->name('viewallproducts');
+    ->name('allproducts');
 
 Route::get('/addtocart/{id}', [UserController::class, 'addToCart'])
     ->name('addtocart')
@@ -31,9 +33,6 @@ Route::controller(UserController::class)->middleware('auth', 'verified')
         Route::post('stripe', 'stripePost')->name('stripe.post');
     });
 
-
-
-
 Route::get('/cartproducts', [UserController::class, 'cartProducts'])
     ->middleware(['auth', 'verified'])
     ->name('cartproducts');
@@ -42,12 +41,9 @@ Route::get('/myorders', [UserController::class, 'myOrders'])
     ->middleware(['auth', 'verified'])
     ->name('myorders');
 
-
 Route::get('/dashboard', [UserController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])
@@ -60,49 +56,54 @@ Route::middleware('auth')->group(function () {
         ->name('profile.destroy');
 });
 
+
+
 Route::middleware('admin')->group(function () {
     // Categories
 
-    Route::get('/categories', [AdminController::class, 'index'])
+    Route::get('/categories', [CategoryController::class, 'index'])
         ->name('categories.index');
 
-    Route::get('/categories/create', [AdminController::class, 'create'])
+    Route::get('/categories/create', [CategoryController::class, 'create'])
         ->name('categories.create');
 
-    Route::post('/categories', [AdminController::class, 'store'])
+    Route::post('/categories', [CategoryController::class, 'store'])
         ->name('categories.store');
 
-    Route::get('/categories/{id}', [AdminController::class, 'edit'])
+    Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])
         ->name('categories.edit');
 
-    Route::put('/categories/{id}', [AdminController::class, 'update'])
+    Route::put('/categories/{id}', [CategoryController::class, 'update'])
         ->name('categories.update');
 
-    Route::delete('/categories/{id}', [AdminController::class, 'destroy'])
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])
         ->name('categories.delete');
 
+
     // Products
-    Route::get('/showproducts', [AdminController::class, 'indexProducts'])
+    Route::get('/viewallproducts', [ProductController::class, 'index'])
         ->name('products.index');
 
-    Route::get('/products/create', [AdminController::class, 'createProduct'])
+    Route::get('/products/create', [ProductController::class, 'create'])
         ->name('products.create');
 
-    Route::post('/storeproducts', [AdminController::class, 'storeProduct'])
+    Route::post('/storeproducts', [ProductController::class, 'store'])
         ->name('products.store');
 
-    Route::get('/inproducts/{id}', [AdminController::class, 'editProducts'])
+    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])
         ->name('products.edit');
 
-    Route::put('/products/{id}', [AdminController::class, 'updateProduct'])
+    Route::put('/products/{id}', [ProductController::class, 'update'])
         ->name('products.update');
 
-    Route::delete('/inproducts/{id}', [AdminController::class, 'destroyProducts'])
+    Route::delete('/products/{id}', [ProductController::class, 'destroy'])
         ->name('products.delete');
 
-    Route::post('/search', [AdminController::class, 'findProduct'])
+    Route::post('/search', [ProductController::class, 'findProduct'])
         ->name('admin.searchproduct');
 
+
+    //orders
     Route::get('/orders', [AdminController::class, 'viewOrders'])
         ->name('orders');
 
