@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <div style="width: 1600px; margin:0 auto; padding:20px">
+    <div style=" margin:0 auto; padding:20px">
         <table style="width: 100%; border-collapse: collapse; font-family: arial, sans-serif;">
             <thead>
                 <tr style="background-color: #f2f2f2">
@@ -54,15 +54,13 @@
                         $total_price += $cart->product->product_price;
                     @endphp
                 @endforeach
-            <tfoot>
                 <tr style="background-color: #f2f2f2">
                     <td style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd ;display: flex; justify-content:space-between;"
-                        colspan="5">
+                        colspan="3">
                         <h4>Total Price: </h4>
                         <h4>${{ $total_price }}</h4>
                     </td>
                 </tr>
-            </tfoot>
         </table>
 
         <form action="{{ route('confirmorder') }}" method="post" style="margin-top: 20px">

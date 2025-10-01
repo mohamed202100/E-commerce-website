@@ -52,33 +52,34 @@
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Why Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#us">Why Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Testimonial</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
+
+                        <div class="user_option">
+                            <form class="form-inline ">
+                                <button class="btn nav_search-btn" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="user_option">
+                            @if (Auth::check())
+                                <a href="{{ route('dashboard') }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> <span>Dashboard</span>
+                                </a>
+                            @else
+                                <a href="{{ route('login') }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> <span>Login</span>
+                                </a>
+                                <a href="{{ route('register') }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> <span>Sign Up</span>
+                                </a>
+                            @endif
+                            <a href="{{ route('cartproducts') }}"><i class="fa fa-shopping-bag"
+                                    aria-hidden="true">{{ $count }}</i></a>
+                        </div>
                     </ul>
-                    <div class="user_option">
-                        <form class="form-inline ">
-                            <button class="btn nav_search-btn" type="submit">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="user_option">
-                        @if (Auth::check())
-                            <a href="{{ route('dashboard') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i> <span>Dashboard</span>
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i> <span>Login</span>
-                            </a>
-                            <a href="{{ route('register') }}">
-                                <i class="fa fa-user" aria-hidden="true"></i> <span>Sign Up</span>
-                            </a>
-                        @endif
-                        <a href="{{ route('cartproducts') }}"><i class="fa fa-shopping-bag"
-                                aria-hidden="true">{{ $count }}</i></a>
-                    </div>
                 </div>
             </nav>
         </header>
@@ -91,7 +92,7 @@
     </div>
 
 
-    <section class="contact_section ">
+    <section class="contact_section " id="contact-us">
         <div class="container px-0">
             <div class="heading_container ">
                 <h2 class="">
@@ -141,7 +142,7 @@
 
     <!-- info section -->
 
-    <section class="info_section  layout_padding2-top">
+    <section class="info_section  layout_padding2-top" id="us">
         <div class="social_container">
             <div class="social_box">
                 <a href="">

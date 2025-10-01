@@ -135,8 +135,8 @@ class UserController extends Controller
         $cart = ProductCart::where('user_id', Auth::id())->get();
         $address = $request->address;
         $phone = $request->phone;
+        $order = new Order();
         foreach ($cart as $cart_product) {
-            $order = new Order();
             $order->address = $address;
             $order->phone = $phone;
             $order->user_id = Auth::id();
@@ -145,6 +145,12 @@ class UserController extends Controller
             $order->save();
             $cart_product->delete();
             $cart_product->save();
+        }
+
+        if ($order->payment_status == 'Paid') {
+            $product = Product::where('id', '=', $order->product_id);
+            $product->product_quantity--;
+            $product->save();
         }
 
         return redirect()->back()->with('success', 'Payment successful!');
